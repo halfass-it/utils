@@ -1,18 +1,23 @@
+from pathlib import Path
 from dataclasses import dataclass
-import sys
 
 from loguru import logger
 
-from .dtypes import Error
+from .dtypes import CurrentDate, Error
 
 
 @dataclass
-class Logger:
+class LoggerToFile:
+  cache_dir: Path
+
   def __post_init__(self):
-    self.green()
-    
-  def green(self):
-    logger.add(sys.stdout, colorize=True, format='<green>{time}</green> <level>{message}</level>')
+    self.cache_dir = self.cache_dir / 'logs'
+    try:
+      Path.mkdir(self.cache_dir, exist_ok=True)
+    except Exception as e:
+      raise (Exception(f'{Error(e)}'))
+    logfile = self.cache_dir / f'{CurrentDate}.log'
+    logger.add(logfile, rotation='1 day', retention='7 days', level='DEBUG')
 
   def log(self, msg):
     return self.info(Error(msg))

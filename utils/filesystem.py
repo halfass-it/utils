@@ -1,14 +1,20 @@
 from pathlib import Path
+from dataclasses import dataclass, field
 
+@dataclass
 class CacheDir:
-  def __init__(self, cache_dir: Path = None) -> None:
-    if not self.cache_dir:
-      self.cache_dir = Path(f'~/.cache/{str(Path(__file__).cwd().name).split("/")[-1]}').expanduser()
-    Path.mkdir(self.cache_dir, exist_ok=True)
+  path: Path = field(init=False, default=None)
+
+  def __post_init__(self) -> None:
+    if not self.path:
+      self.path = Path(f'~/.cache/{str(Path(__file__).cwd().name).split("/")[-1]}').expanduser()
+    try:
+      Path.mkdir(self.path, exist_ok=True)
+    except Exception as e:
+      raise (Exception(f'Error: {e}'))
 
   def __str__(self) -> Path:
-    return self.cache_dir
+    return str(self.path)
 
   def __repr__(self) -> Path:
-    return self.cache_dir
-
+    return f'CacheDir(path={self.path})'
