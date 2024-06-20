@@ -1,8 +1,5 @@
 from pathlib import Path
-from dataclasses import (
-  dataclass, 
-  field
-)
+from dataclasses import dataclass
 
 from loguru import logger
 
@@ -14,7 +11,7 @@ from .types import (
 
 @dataclass
 class LoggerToFile:
-  cache_dir: Path = field(init=False, default=None)
+  cache_dir: Path = None
 
   def __post_init__(self):
     self.cache_dir = Path(self.cache_dir) / 'logs' if self.cache_dir else CacheDir().path / 'logs'
