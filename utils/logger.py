@@ -3,14 +3,13 @@ import sys
 
 from loguru import logger
 
-from .dtypes import Error
-
+from .types import Error
 
 @dataclass
 class Logger:
   def __post_init__(self):
     self.green()
-    
+
   def green(self):
     logger.add(sys.stdout, colorize=True, format='<green>{time}</green> <level>{message}</level>')
 

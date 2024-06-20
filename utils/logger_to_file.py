@@ -1,17 +1,23 @@
 from pathlib import Path
-from dataclasses import dataclass
+from dataclasses import (
+  dataclass, 
+  field
+)
 
 from loguru import logger
 
-from .dtypes import CurrentDate, Error
-
+from .filesystem import CacheDir
+from .types import (
+  CurrentDate, 
+  Error
+)
 
 @dataclass
 class LoggerToFile:
-  cache_dir: Path
+  cache_dir: Path = field(init=False, default=None)
 
   def __post_init__(self):
-    self.cache_dir = Path(self.cache_dir) / 'logs'
+    self.cache_dir = Path(self.cache_dir) / 'logs' if self.cache_dir else CacheDir().path / 'logs'
     try:
       Path.mkdir(self.cache_dir, exist_ok=True)
     except Exception as e:

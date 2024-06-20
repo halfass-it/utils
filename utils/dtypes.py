@@ -1,38 +1,10 @@
-# NOTE: this file has to be depency free so only core python modules allowed
-import inspect
-import datetime
-import tkinter as tk
-from pathlib import Path
-from dataclasses import dataclass
+from typing import Dict
 
+# auth_packet = {'token': '$TOKEN', 'username': '$USERNAME'}
+AuthPacketStructure = Dict[str, Dict[str, str]]
 
-@dataclass
-class Error:
-  msg: str
-  error_msg: str = None
+# game_packet = {'action': '$ACTION', 'data': '$DATA'}
+GamePacketStructure = Dict[str, Dict[str, str]]
 
-  def __post_init__(self):
-    path = inspect.getfile(inspect.currentframe().f_back)
-    method = inspect.currentframe().f_back.f_code.co_name
-    line = inspect.currentframe().f_back.f_lineno
-    self.error_msg = f'[{path}:{method}:{line}]: {self.msg}'
-
-  def __str__(self):
-    return self.error_msg
-
-  def __repr__(self):
-    return self.error_msg
-
-
-@dataclass
-class CurrentDate:
-  date: str = None
-
-  def __post_init__(self):
-    self.date = datetime.datetime.now().strftime('%H-%M-%S_%d-%m-%Y')
-
-  def __str__(self):
-    return self.date
-
-  def __repr__(self):
-    return self.date
+# command = {'auth': auth_packet, 'gameplay': game_packet}
+CommandPacketStruct = Dict[str, Dict[str, Dict[str, str]]]
