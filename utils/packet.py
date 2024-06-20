@@ -9,7 +9,8 @@ from .dtypes import (
 @dataclass
 class Packet:
   category: str = field(init=False, default='Packet')
-
+  data: dict = field(default_factory=dict)
+  
   def __str__(self) -> str:
     return ''
 
