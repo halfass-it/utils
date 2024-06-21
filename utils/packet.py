@@ -22,11 +22,6 @@ class Packet:
     def __repr__(self) -> str:
         return f'{self.category}()'
 
-    @classmethod
-    def from_bytes(cls, data: bytes) -> 'Packet':
-        decoded_data = json.loads(data.decode('utf-8'))
-        return cls(data=PacketDataStructure(**decoded_data))
-
 @dataclass
 class AuthPacket(Packet):
     category: str = field(init=False, default='AuthPacket')
@@ -56,7 +51,7 @@ class GamePacket(Packet):
 
     def __bytes__(self) -> bytes:
         return str(self.data).encode('utf-8')
-
+    
     def __repr__(self) -> str:
         return f'{self.category}({self.data})'
 
@@ -82,8 +77,3 @@ class CommandPacket(Packet):
 
     def __repr__(self) -> str:
         return f'{self.category}(AUTH={repr(self.auth)}, GAME={repr(self.game)})'
-
-    @classmethod
-    def from_bytes(cls, data: bytes) -> 'CommandPacket':
-        decoded_data = json.loads(data.decode('utf-8'))
-        return cls(data=CommandPacketDataStructure(AUTH=decoded_data.get('AUTH', {}), GAME=decoded_data.get('GAME', {})))
