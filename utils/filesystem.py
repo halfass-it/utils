@@ -1,6 +1,7 @@
 from pathlib import Path
 from dataclasses import dataclass, field
 
+
 @dataclass
 class CacheDir:
   path: Path = field(init=False, default=None)

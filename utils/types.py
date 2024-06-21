@@ -2,6 +2,7 @@ import inspect
 import datetime
 from dataclasses import dataclass
 
+
 @dataclass
 class Error:
   msg: str
@@ -18,6 +19,7 @@ class Error:
 
   def __repr__(self):
     return self.error_msg
+
 
 @dataclass
 class CurrentDate:

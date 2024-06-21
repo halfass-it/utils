@@ -4,11 +4,9 @@ from dataclasses import dataclass
 from loguru import logger
 
 from .filesystem import CacheDir
-from .types import (
-  CurrentDate, 
-  Error
-)
+from .types import CurrentDate, Error
 from .logger import Logger
+
 
 @dataclass
 class LoggerToFile(Logger):

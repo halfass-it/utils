@@ -5,6 +5,7 @@ from loguru import logger
 
 from .types import Error
 
+
 @dataclass
 class Logger:
   def __post_init__(self):

@@ -1,10 +1,7 @@
 from dataclasses import dataclass, field
 
-from .dtypes import (
-  AuthPacketStructure, 
-  GamePacketStructure, 
-  CommandPacketStruct
-)
+from .dtypes import AuthPacketStructure, GamePacketStructure, CommandPacketStruct
+
 
 @dataclass
 class Packet:
@@ -16,6 +13,7 @@ class Packet:
 
   def __repr__(self) -> str:
     return f'{self.category}()'
+
 
 @dataclass
 class AuthPacket(Packet):
@@ -31,6 +29,7 @@ class AuthPacket(Packet):
   def __repr__(self) -> str:
     return f'{self.category}({self.data})'
 
+
 @dataclass
 class GamePacket(Packet):
   category: str = field(init=False, default='GamePacket')
@@ -45,6 +44,7 @@ class GamePacket(Packet):
   def __repr__(self) -> str:
     return f'{self.category}({self.data})'
 
+
 @dataclass
 class CommandPacket(Packet):
   category: str = field(init=False, default='CommandPacket')
@@ -57,7 +57,6 @@ class CommandPacket(Packet):
     self.game_data = self.game.data if self.game else {}
 
   def __str__(self) -> str:
-
     return str({'auth': self.auth_data, 'game': self.game_data})
 
   def __bytes__(self) -> bytes:
