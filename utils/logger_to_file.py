@@ -13,11 +13,7 @@ class LoggerToFile(Logger):
   cache_dir: Path = None
 
   def __post_init__(self):
-    self.cache_dir = (
-      Path(self.cache_dir) / 'logs'
-      if self.cache_dir
-      else CacheDir().path / 'logs'
-    )
+    self.cache_dir = Path(self.cache_dir) / 'logs' if self.cache_dir else CacheDir().path / 'logs'
     try:
       Path.mkdir(self.cache_dir, exist_ok=True)
     except Exception as e:
