@@ -18,7 +18,7 @@ class LoggerToFile(Logger):
       Path.mkdir(self.cache_dir, exist_ok=True)
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
-    logfile = self.cache_dir / f'{CurrentDate}.log'
+    logfile = self.cache_dir / f'{CurrentDate()}.log'
     logger.add(logfile, rotation='1 day', retention='7 days', level='DEBUG')
 
   def log(self, msg):
