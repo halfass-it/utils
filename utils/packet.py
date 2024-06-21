@@ -53,7 +53,7 @@ class GamePacket(Packet):
 @dataclass
 class CommandPacket(Packet):
   category: str = field(init=False, default='CommandPacket')
-  data: CommandPacketDataStruct
+  data: CommandPacketDataStructure
 
   def __post_init__(self):
     self.auth = self.data.get('AUTH', {})
