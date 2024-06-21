@@ -55,10 +55,10 @@ class CommandPacket(Packet):
   data: CommandPacketStruct
 
   def __post_init__(self):
-    self.auth = self.data.get('auth', {})
-    self.game = self.data.get('game', {})
-    self.auth_data = self.auth.data if self.auth else {}
-    self.game_data = self.game.data if self.game else {}
+    self.auth = self.data.get('AUTH', {})
+    self.game = self.data.get('GAME', {})
+    self.auth_data = self.auth if self.auth else {}
+    self.game_data = self.game if self.game else {}
 
   def __str__(self) -> str:
     return str({'AUTH': self.auth_data, 'AUTH': self.game_data})
