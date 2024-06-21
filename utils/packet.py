@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 
 from .dtypes import (
-  AuthPacketStructure,
-  GamePacketStructure,
-  CommandPacketStruct,
+  AuthPacketDataStructure,
+  GamePacketDataStructure,
+  CommandPacketDataStructure,
   PacketDataStructure,
 )
 
