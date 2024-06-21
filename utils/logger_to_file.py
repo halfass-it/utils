@@ -7,6 +7,7 @@ from .filesystem import CacheDir
 from .types import CurrentDate, Error
 from .logger import Logger
 
+
 @dataclass
 class LoggerToFile(Logger):
   cache_dir: Path = None
