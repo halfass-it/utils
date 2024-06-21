@@ -1,6 +1,10 @@
 from dataclasses import dataclass, field
 
-from .dtypes import AuthPacketStructure, GamePacketStructure, CommandPacketStruct
+from .dtypes import (
+  AuthPacketStructure,
+  GamePacketStructure,
+  CommandPacketStruct,
+)
 
 
 @dataclass

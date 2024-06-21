@@ -8,7 +8,9 @@ class CacheDir:
 
   def __post_init__(self) -> None:
     if not self.path:
-      self.path = Path(f'~/.cache/{str(Path(__file__).cwd().name).split("/")[-1]}').expanduser()
+      self.path = Path(
+        f'~/.cache/{str(Path(__file__).cwd().name).split("/")[-1]}'
+      ).expanduser()
     try:
       Path.mkdir(self.path, exist_ok=True)
     except Exception as e:

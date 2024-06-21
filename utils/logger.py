@@ -12,7 +12,11 @@ class Logger:
     self.green()
 
   def green(self):
-    logger.add(sys.stdout, colorize=True, format='<green>{time}</green> <level>{message}</level>')
+    logger.add(
+      sys.stdout,
+      colorize=True,
+      format='<green>{time}</green> <level>{message}</level>',
+    )
 
   def log(self, msg):
     return self.info(Error(msg))
