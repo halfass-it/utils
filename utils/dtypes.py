@@ -1,10 +1,13 @@
-from typing import Dict
+from typing import Dict, Any
 
 # auth_packet = {'token': '$TOKEN', 'username': '$USERNAME'}
-AuthPacketStructure = Dict[str, Dict[str, str]]
+AuthPacketDataStructure = Dict[str, Dict[str, str]]
 
 # game_packet = {'action': '$ACTION', 'data': '$DATA'}
-GamePacketStructure = Dict[str, Dict[str, str]]
+GamePacketDataStructure = Dict[str, Dict[str, str]]
 
-# command = {'auth': auth_packet, 'gameplay': game_packet}
-CommandPacketStruct = Dict[str, Dict[str, Dict[str, str]]]
+# command_packet = {'auth': auth_packet, 'gameplay': game_packet}
+CommandPacketDataStructure = Dict[str, Dict[str, Dict[str, str]]]
+
+# packet = {'ping': 'pong'}
+PacketDataStructure = Dict[str, Any]
