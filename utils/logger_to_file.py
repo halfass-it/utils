@@ -8,9 +8,10 @@ from .types import (
   CurrentDate, 
   Error
 )
+from .logger import Logger
 
 @dataclass
-class LoggerToFile:
+class LoggerToFile(Logger):
   cache_dir: Path = None
 
   def __post_init__(self):

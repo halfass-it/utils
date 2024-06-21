@@ -10,7 +10,7 @@ from .dtypes import (
 class Packet:
   category: str = field(init=False, default='Packet')
   data: dict = field(default_factory=dict)
-  
+
   def __str__(self) -> str:
     return ''
 
@@ -53,12 +53,15 @@ class CommandPacket(Packet):
   def __post_init__(self):
     self.auth = self.data.get('auth', {})
     self.game = self.data.get('game', {})
+    self.auth_data = self.auth.data if self.auth else {}
+    self.game_data = self.game.data if self.game else {}
 
   def __str__(self) -> str:
-    return f'auth: {self.auth}, game: {self.game}'
+
+    return str({'auth': self.auth_data, 'game': self.game_data})
 
   def __bytes__(self) -> bytes:
-    return str(self.data).encode('utf-8')
+    return str(self).encode('utf-8')
 
   def __repr__(self) -> str:
-    return f'{self.category}(auth={self.auth}, game={self.game})'
+    return f'{self.category}(auth={repr(self.auth)}, game={repr(self.game)})'
