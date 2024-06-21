@@ -12,12 +12,24 @@ current_version=$(grep "version=" setup.py | cut -d"'" -f2)
 # Split the version into parts
 IFS='.' read -ra version_parts <<< "$current_version"
 
-# Increment the specified part
+# Increment the specified part and reset lower parts
 case $1 in
-    1) ((version_parts[0]++)) ;;
-    2) ((version_parts[1]++)) ;;
-    3) ((version_parts[2]++)) ;;
-    *) echo "Invalid argument. Please use 1, 2, or 3."; exit 1 ;;
+    1)
+        ((version_parts[0]++))
+        version_parts[1]=0
+        version_parts[2]=0
+        ;;
+    2)
+        ((version_parts[1]++))
+        version_parts[2]=0
+        ;;
+    3)
+        ((version_parts[2]++))
+        ;;
+    *)
+        echo "Invalid argument. Please use 1, 2, or 3."
+        exit 1
+        ;;
 esac
 
 # Construct the new version
