@@ -27,30 +27,30 @@ class LoggerToFile(Logger):
 
   def debug(self, msg):
     try:
-      logger.debug(f'[{CurrentDate()}]:{msg}')
+      logger.debug(f'[{CurrentDate()}] : {msg}')
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
 
   def info(self, msg):
     try:
-      logger.info(f'[{CurrentDate()}]:{msg}')
+      logger.info(f'[{CurrentDate()}] : {msg}')
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
 
   def warning(self, msg):
     try:
-      logger.warning(f'[{CurrentDate()}]:{msg}')
+      logger.warning(f'[{CurrentDate()}] : {msg}')
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
 
   def error(self, msg: str) -> int:
     try:
-      logger.error(f'[{CurrentDate()}]:{msg}')
+      logger.error(f'[{CurrentDate()}] : {msg}')
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
 
   def critical(self, msg: str) -> int:
     try:
-      logger.critical(f'[{CurrentDate()}]:{msg}')
+      logger.critical(f'[{CurrentDate()}] : {msg}')
     except Exception as e:
       raise (Exception(f'{Error(e)}'))
