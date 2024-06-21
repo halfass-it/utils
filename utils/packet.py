@@ -59,10 +59,10 @@ class CommandPacket(Packet):
     self.game = self.data.get('GAME', {})
 
   def __str__(self) -> str:
-    return str({'AUTH': self.auth, 'AUTH': self.game})
+      return str({'AUTH': self.auth, 'GAME': self.game})
 
   def __bytes__(self) -> bytes:
-    return str(self).encode('utf-8')
+      return str({'AUTH': self.auth, 'GAME': self.game}).encode('utf-8')
 
   def __repr__(self) -> str:
     return f'{self.category}(AUTH={repr(self.auth)}, GAME={repr(self.game)})'
