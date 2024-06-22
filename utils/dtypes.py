@@ -1,5 +1,7 @@
 from typing import Dict, Any
 
+#TODO: maybe make this classes?
+
 # auth_packet = {'token': '$TOKEN', 'username': '$USERNAME'}
 AuthPacketDataStructure = Dict[str, Dict[str, str]]
 
